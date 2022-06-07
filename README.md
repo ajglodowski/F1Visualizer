@@ -1,6 +1,8 @@
 # F1Visualizer
 An IOS app that uses public APIs to visualize Formula 1 Data
 
+Given SwiftUI's updated support for graphs, creating a visualizer for F1 seemed like an interesting project to tackle. This is a personal project to work on my Swift/SwiftUI skills and use of API calls.
+
 ## Goals / User Stories
 - Driver page that shows: wins, total races attempted, races completed, seasons raced, current team, driver details (age, nationality, number), picture. Later to do: Comparison to teammate.
 - Individual Race page that shows: race results, qualifying results. Later to do: Position change between events, number of overtakes
