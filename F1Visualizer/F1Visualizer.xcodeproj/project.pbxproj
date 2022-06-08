@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A9D6391284F061B00BB59B6 /* MRData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9D6390284F061B00BB59B6 /* MRData.swift */; };
+		1A9D6393284F07DC00BB59B6 /* Constructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9D6392284F07DC00BB59B6 /* Constructor.swift */; };
+		1A9D6399284FBA8500BB59B6 /* CurrentDriverStandings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9D6398284FBA8500BB59B6 /* CurrentDriverStandings.swift */; };
+		1A9D639B284FBBFA00BB59B6 /* DriverStandingsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9D639A284FBBFA00BB59B6 /* DriverStandingsRow.swift */; };
+		1A9D639D284FE8DC00BB59B6 /* ClientViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9D639C284FE8DC00BB59B6 /* ClientViewModel.swift */; };
+		1A9D639F284FE92700BB59B6 /* DriverDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9D639E284FE92700BB59B6 /* DriverDataViewModel.swift */; };
+		1A9D63A1284FF95600BB59B6 /* DriverPhotoTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9D63A0284FF95600BB59B6 /* DriverPhotoTile.swift */; };
+		1A9D63A32850091400BB59B6 /* WidthThresholdReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9D63A22850091400BB59B6 /* WidthThresholdReader.swift */; };
 		1ACC6574284EE777004A2546 /* F1VisualizerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC6573284EE777004A2546 /* F1VisualizerApp.swift */; };
 		1ACC6576284EE777004A2546 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC6575284EE777004A2546 /* ContentView.swift */; };
 		1ACC6578284EE77A004A2546 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1ACC6577284EE77A004A2546 /* Assets.xcassets */; };
@@ -14,6 +22,10 @@
 		1ACC6586284EE77A004A2546 /* F1VisualizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC6585284EE77A004A2546 /* F1VisualizerTests.swift */; };
 		1ACC6590284EE77A004A2546 /* F1VisualizerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC658F284EE77A004A2546 /* F1VisualizerUITests.swift */; };
 		1ACC6592284EE77A004A2546 /* F1VisualizerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC6591284EE77A004A2546 /* F1VisualizerUITestsLaunchTests.swift */; };
+		1ACC659F284EE7FE004A2546 /* DriverDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC659E284EE7FE004A2546 /* DriverDetail.swift */; };
+		1ACC65A1284EE813004A2546 /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC65A0284EE813004A2546 /* Driver.swift */; };
+		1ACC65A3284EEB2F004A2546 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC65A2284EEB2F004A2546 /* ModelData.swift */; };
+		1ACC65A5284EF2D8004A2546 /* CurrentDriverStandingsTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC65A4284EF2D8004A2546 /* CurrentDriverStandingsTile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +46,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A9D6390284F061B00BB59B6 /* MRData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MRData.swift; sourceTree = "<group>"; };
+		1A9D6392284F07DC00BB59B6 /* Constructor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constructor.swift; sourceTree = "<group>"; };
+		1A9D6398284FBA8500BB59B6 /* CurrentDriverStandings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDriverStandings.swift; sourceTree = "<group>"; };
+		1A9D639A284FBBFA00BB59B6 /* DriverStandingsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverStandingsRow.swift; sourceTree = "<group>"; };
+		1A9D639C284FE8DC00BB59B6 /* ClientViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientViewModel.swift; sourceTree = "<group>"; };
+		1A9D639E284FE92700BB59B6 /* DriverDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverDataViewModel.swift; sourceTree = "<group>"; };
+		1A9D63A0284FF95600BB59B6 /* DriverPhotoTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverPhotoTile.swift; sourceTree = "<group>"; };
+		1A9D63A22850091400BB59B6 /* WidthThresholdReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidthThresholdReader.swift; sourceTree = "<group>"; };
 		1ACC6570284EE777004A2546 /* F1Visualizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = F1Visualizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ACC6573284EE777004A2546 /* F1VisualizerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = F1VisualizerApp.swift; sourceTree = "<group>"; };
 		1ACC6575284EE777004A2546 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -45,6 +65,10 @@
 		1ACC658B284EE77A004A2546 /* F1VisualizerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = F1VisualizerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ACC658F284EE77A004A2546 /* F1VisualizerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = F1VisualizerUITests.swift; sourceTree = "<group>"; };
 		1ACC6591284EE77A004A2546 /* F1VisualizerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = F1VisualizerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		1ACC659E284EE7FE004A2546 /* DriverDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverDetail.swift; sourceTree = "<group>"; };
+		1ACC65A0284EE813004A2546 /* Driver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
+		1ACC65A2284EEB2F004A2546 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
+		1ACC65A4284EF2D8004A2546 /* CurrentDriverStandingsTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDriverStandingsTile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +96,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A9D6394284FB9E700BB59B6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1A9D6397284FBA1500BB59B6 /* Standings */,
+				1A9D6395284FB9F100BB59B6 /* Driver */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1A9D6395284FB9F100BB59B6 /* Driver */ = {
+			isa = PBXGroup;
+			children = (
+				1ACC659E284EE7FE004A2546 /* DriverDetail.swift */,
+				1A9D63A0284FF95600BB59B6 /* DriverPhotoTile.swift */,
+			);
+			path = Driver;
+			sourceTree = "<group>";
+		};
+		1A9D6396284FB9FF00BB59B6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1A9D6390284F061B00BB59B6 /* MRData.swift */,
+				1A9D6392284F07DC00BB59B6 /* Constructor.swift */,
+				1ACC65A2284EEB2F004A2546 /* ModelData.swift */,
+				1ACC65A0284EE813004A2546 /* Driver.swift */,
+				1A9D639C284FE8DC00BB59B6 /* ClientViewModel.swift */,
+				1A9D639E284FE92700BB59B6 /* DriverDataViewModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1A9D6397284FBA1500BB59B6 /* Standings */ = {
+			isa = PBXGroup;
+			children = (
+				1ACC65A4284EF2D8004A2546 /* CurrentDriverStandingsTile.swift */,
+				1A9D6398284FBA8500BB59B6 /* CurrentDriverStandings.swift */,
+				1A9D639A284FBBFA00BB59B6 /* DriverStandingsRow.swift */,
+			);
+			path = Standings;
+			sourceTree = "<group>";
+		};
 		1ACC6567284EE777004A2546 = {
 			isa = PBXGroup;
 			children = (
@@ -95,11 +160,14 @@
 		1ACC6572284EE777004A2546 /* F1Visualizer */ = {
 			isa = PBXGroup;
 			children = (
+				1A9D6396284FB9FF00BB59B6 /* Models */,
+				1A9D6394284FB9E700BB59B6 /* Views */,
 				1ACC6573284EE777004A2546 /* F1VisualizerApp.swift */,
 				1ACC6575284EE777004A2546 /* ContentView.swift */,
 				1ACC6577284EE77A004A2546 /* Assets.xcassets */,
 				1ACC6579284EE77A004A2546 /* F1Visualizer.entitlements */,
 				1ACC657A284EE77A004A2546 /* Preview Content */,
+				1A9D63A22850091400BB59B6 /* WidthThresholdReader.swift */,
 			);
 			path = F1Visualizer;
 			sourceTree = "<group>";
@@ -259,8 +327,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A9D6399284FBA8500BB59B6 /* CurrentDriverStandings.swift in Sources */,
+				1A9D639B284FBBFA00BB59B6 /* DriverStandingsRow.swift in Sources */,
+				1A9D639F284FE92700BB59B6 /* DriverDataViewModel.swift in Sources */,
 				1ACC6576284EE777004A2546 /* ContentView.swift in Sources */,
+				1ACC659F284EE7FE004A2546 /* DriverDetail.swift in Sources */,
+				1A9D6393284F07DC00BB59B6 /* Constructor.swift in Sources */,
+				1A9D6391284F061B00BB59B6 /* MRData.swift in Sources */,
+				1A9D639D284FE8DC00BB59B6 /* ClientViewModel.swift in Sources */,
+				1ACC65A3284EEB2F004A2546 /* ModelData.swift in Sources */,
+				1ACC65A5284EF2D8004A2546 /* CurrentDriverStandingsTile.swift in Sources */,
+				1A9D63A32850091400BB59B6 /* WidthThresholdReader.swift in Sources */,
 				1ACC6574284EE777004A2546 /* F1VisualizerApp.swift in Sources */,
+				1ACC65A1284EE813004A2546 /* Driver.swift in Sources */,
+				1A9D63A1284FF95600BB59B6 /* DriverPhotoTile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
