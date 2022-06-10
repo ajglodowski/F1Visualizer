@@ -12,14 +12,16 @@ struct CurrentDriverStandings: View {
     var drivers: [Driver]
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List(drivers) { driver in
-                NavigationLink(destination: DriverDetail(driver: driver)) {
+                NavigationLink(value: driver) {
                     DriverStandingsRow(driver: driver, position: String(drivers.firstIndex(where: { $0 == driver})!+1))
                 }
             }
+            .navigationDestination(for: Driver.self) { driver in
+                DriverDetail(driver: driver)
+            }
         }
-        .navigationViewStyle(.stack)
         .navigationTitle("Driver Standings")
     }
 }

@@ -19,6 +19,8 @@ struct DriverDetail: View {
             VStack{
                 Text(driver.givenName+" "+driver.familyName)
                     .font(.title)
+                Text(getFlag(nationality:driver.nationality))
+                    .font(.largeTitle)
                 Text(driver.driverId)
                     .font(.title)
                 Text("Drivers Championships: "+driverVm.championshipWinTotal)

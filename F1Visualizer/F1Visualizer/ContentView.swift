@@ -12,51 +12,60 @@ struct ContentView: View {
     @ObservedObject var vm = ContentViewModel()
     
     var body: some View {
-        
-        NavigationView {
-            VStack {
-                Image("alonso")
-                NavigationLink(destination: CurrentDriverStandings(drivers: vm.drivers)) {
-                    CurrentDriverStandingsTile()
+        NavigationStack {
+            List {
+                VStack {
+                    Image("alonso")
+                }
+                VStack (alignment: .center) {
+                    NavigationLink(value: 1) {
+                        ViewThatFits{
+                            if (!vm.isFetching) {
+                                CurrentDriverStandingsTile()
+                                    .frame(maxHeight: 500)
+                            } else {
+                                Text("Pull down to refresh")
+                            }
+                        }
+                        
+                    }
+                }
+                    
+                VStack {
+                    NavigationLink(value: 2) {
+                        CurrentConstructorStandingsRow()
+                    }
+                }
+                
+                VStack (alignment: .center) {
+                    NavigationLink(value: 3) {
+                        MostRecentRaceRow()
+                            .frame(maxHeight: 500)
+                    }
                         
                 }
-                .containerShape(RoundedRectangle(cornerRadius: 50, style: .continuous))
-                //.fixedSize(horizontal: false, vertical: true)
-                .padding([.horizontal, .bottom], 16)
-                .frame(maxWidth: 1200)
             }
-#if os(iOS)
-            .background(Color(uiColor: .systemGroupedBackground))
-#else
-            .background(.quaternary.opacity(0.5))
-#endif
-        }
-        .navigationViewStyle(.stack)
-        .task {
-            await vm.fetchData()
-        }
-    }
-   /*
-    var body: some View {
-        WidthThresholdReader(widthThreshold: 520) { proxy in
-            ScrollView(.vertical) {
-                VStack {
-                    CurrentDriverStandingsTile()
+            .task {
+                await vm.fetchData()
+            }
+            .refreshable {
+                //await vm.fetchData()
+            }
+            .navigationDestination(for: Int.self) { val in
+                switch val{
+                case 1:
+                    CurrentDriverStandings(drivers: vm.drivers)
+                case 2:
+                    CurrentConstructorStandings()
+                case 3:
+                    RaceDetail(year: "2022", round: "1")
+                default:
+                    CurrentDriverStandings(drivers: vm.drivers)
                 }
-                .containerShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
-                .fixedSize(horizontal: false, vertical: true)
-                .padding([.horizontal, .bottom], 16)
-                .frame(maxWidth: 1200)
             }
+            .navigationTitle("F1 Visualizer")
         }
-        #if os(iOS)
-        .background(Color(uiColor: .systemGroupedBackground))
-        #else
-        .background(.quaternary.opacity(0.5))
-        #endif
     }
-    */
-    
 }
 
 struct ContentView_Previews: PreviewProvider {

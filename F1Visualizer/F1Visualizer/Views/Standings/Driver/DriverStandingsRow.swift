@@ -11,7 +11,7 @@ struct DriverStandingsRow: View {
     var driver: Driver
     var position: String
     var body: some View {
-        GridRow {
+        HStack {
             Text(position)
             Spacer()
             Image(driver.driverId.lowercased())
@@ -20,6 +20,9 @@ struct DriverStandingsRow: View {
                 .frame(width: 50, height: 50)
             Spacer()
             Text("\(driver.givenName) \(driver.familyName)")
+            Spacer()
+            Text(getFlag(nationality:driver.nationality))
+                .font(.title)
             Spacer()
             Text(driver.code)
             Text(driver.permanentNumber)

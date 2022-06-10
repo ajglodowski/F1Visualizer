@@ -10,8 +10,9 @@ import SwiftUI
 struct DriverPhotoTile: View {
     var driver: Driver
     var extraText: String?
+    var color: Color?
     
-    let iconShape = RoundedRectangle(cornerRadius: 10, style: .continuous)
+    //let iconShape = RoundedRectangle(cornerRadius: 20, style: .continuous)
     
     var body: some View {
         VStack {
@@ -28,14 +29,8 @@ struct DriverPhotoTile: View {
                 
         }
         .padding(6)
-        #if canImport(UIKit)
-        .background(Color(uiColor: .tertiarySystemFill), in: iconShape)
-        #else
-        .background(.quaternary.opacity(0.5), in: iconShape)
-        #endif
-        .overlay {
-            iconShape.strokeBorder(.quaternary, lineWidth: 0.5)
-        }
+        .background(color ?? Color(uiColor: .tertiarySystemFill))
+        .cornerRadius(20)
         
     }
 }

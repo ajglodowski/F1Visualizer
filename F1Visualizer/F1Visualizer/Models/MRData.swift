@@ -58,8 +58,10 @@ struct Season: Codable {
 }
 
 struct RaceTable: Codable {
-    var driverId: String
-    var position: String
+    var driverId: String?
+    var position: String?
+    var season: String
+    var round: String
     var Races: [Race]
 }
 
@@ -69,15 +71,15 @@ struct Race: Codable {
     var url: String
     var raceName: String
     var date: String
-    
+    var Results: [Result]
+    var Circuit: Circuit
 }
 
-struct Circut: Codable {
+struct Circuit: Codable {
     var circuitId: String
     var url: String
     var circuitName: String
     var Location: Location
-    var Results: [Result]
 }
 
 struct Location: Codable {
@@ -97,9 +99,23 @@ struct Result: Codable {
     var grid: String
     var laps: String
     var status: String
+    var Time: Time?
+    var FastestLap: FastestLap
 }
 
 struct Time: Codable {
-    var millis: String
+    var millis: String?
     var time: String
+}
+
+struct FastestLap: Codable {
+    var rank: String
+    var lap: String
+    var Time: Time
+    var AverageSpeed: AverageSpeed
+}
+
+struct AverageSpeed: Codable {
+    var units: String
+    var speed: String
 }
