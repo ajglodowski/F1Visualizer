@@ -13,6 +13,8 @@ class ConstructorDataViewModel: ObservableObject {
 
     @Published var isFetching = false
     @Published var constructors = [Constructor]()
+    @Published var standings = [StandingItem]()
+    //@Published var rawStandingTable: StandingsTable? = nil
 
     @Published var errorMessage = ""
 
@@ -20,19 +22,21 @@ class ConstructorDataViewModel: ObservableObject {
     @MainActor
     func fetchData() async {
         do {
-            var tempConst = [Constructor]()
             isFetching = true
+            var tempConst = [Constructor]()
             guard let url = URL(string: "https://ergast.com/api/f1/current/constructorStandings.json") else { fatalError("Missing URL") }
             let urlRequest = URLRequest(url: url)
             let (data, response) = try await URLSession.shared.data(for: urlRequest)
-
             guard (response as? HTTPURLResponse)?.statusCode == 200 else { fatalError("Error while fetching data") }
             let decodedResponse = try JSONDecoder().decode(apiResponse.self, from: data)
-            let standings =  decodedResponse.MRData.StandingsTable!.StandingsLists.first?.ConstructorsStandings ?? []
-            for standing in standings {
+            let fetchedStandings =  decodedResponse.MRData.StandingsTable!.StandingsLists.first?.ConstructorStandings ?? []
+            var s = [StandingItem]()
+            for standing in fetchedStandings {
+                s.append(standing)
                 tempConst.append(standing.Constructor!)
             }
             constructors = tempConst
+            standings = s
             isFetching = false
         } catch {
             isFetching = false

@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @ObservedObject var vm = ContentViewModel()
+    //@ObservedObject var vm = ContentViewModel()
+    //@ObservedObject var rdvm = RaceDataViewModel()
     
     var body: some View {
         NavigationStack {
@@ -17,17 +18,10 @@ struct ContentView: View {
                 VStack {
                     Image("alonso")
                 }
-                VStack (alignment: .center) {
+                VStack () {
                     NavigationLink(value: 1) {
-                        ViewThatFits{
-                            if (!vm.isFetching) {
-                                CurrentDriverStandingsTile()
-                                    .frame(maxHeight: 500)
-                            } else {
-                                Text("Pull down to refresh")
-                            }
-                        }
-                        
+                        CurrentDriverStandingsRow()
+                            //.frame(maxHeight: 700)
                     }
                 }
                     
@@ -39,14 +33,22 @@ struct ContentView: View {
                 
                 VStack (alignment: .center) {
                     NavigationLink(value: 3) {
-                        MostRecentRaceRow()
-                            .frame(maxHeight: 500)
+                        RaceRow(mostRecent: true)
+                            //.frame(maxHeight: 500)
+                    }
+                        
+                }
+                VStack (alignment: .center) {
+                    NavigationLink(value: 3) {
+                        RaceRow(mostRecent: false, year:"2022", round:"1")
+                            //.frame(maxHeight: 500)
                     }
                         
                 }
             }
             .task {
-                await vm.fetchData()
+                //await vm.fetchData()
+                //await rdvm.fetchMostRecentRace()
             }
             .refreshable {
                 //await vm.fetchData()
@@ -54,13 +56,15 @@ struct ContentView: View {
             .navigationDestination(for: Int.self) { val in
                 switch val{
                 case 1:
-                    CurrentDriverStandings(drivers: vm.drivers)
+                    //CurrentDriverStandings()
+                    DriverDetail(driverId:"alonso")
                 case 2:
                     CurrentConstructorStandings()
                 case 3:
                     RaceDetail(year: "2022", round: "1")
                 default:
-                    CurrentDriverStandings(drivers: vm.drivers)
+                    //CurrentDriverStandings(drivers: vm.drivers)
+                    Text("Error")
                 }
             }
             .navigationTitle("F1 Visualizer")

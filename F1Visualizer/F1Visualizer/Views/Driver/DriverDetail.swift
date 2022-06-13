@@ -9,44 +9,80 @@ import SwiftUI
 
 struct DriverDetail: View {
    
-    var driver: Driver
+    var driverId: String
     
-    @ObservedObject var driverVm = DriverDataViewModel()
+    @StateObject var driverVm = DriverDataViewModel()
     
     var body: some View {
         ScrollView {
-            Image(driver.driverId.lowercased())
-            VStack{
-                Text(driver.givenName+" "+driver.familyName)
-                    .font(.title)
-                Text(getFlag(nationality:driver.nationality))
-                    .font(.largeTitle)
-                Text(driver.driverId)
-                    .font(.title)
-                Text("Drivers Championships: "+driverVm.championshipWinTotal)
-                    .font(.title)
-                Text("Race Wins: "+driverVm.raceWinTotal)
-                    .font(.title)
-                Text("Podium Finishes: "+driverVm.poduimFinishes)
-                    .font(.title)
+            if (driverVm.driver != nil) {
+                if (!driverVm.loading) {
+                    var driver = driverVm.driver!
+                    var driverName = driver.givenName + " " + driver.familyName+getFlag(nationality: driver.nationality)
+                    
+                    Image(driver.driverId.lowercased())
+                    VStack (alignment:.leading){
+                        Text(driverName)
+                            .font(.largeTitle)
+                            .bold()
+                        //Text(driver.driverId)
+                            //.font(.title)
+                        if (driverVm.championshipWinTotal != "0") {
+                            Text("Drivers Championships: "+driverVm.championshipWinTotal)
+                                .font(.title)
+                        }
+                        HStack {
+                            var bestResult = generateBestResult(races:driverVm.allRaces)
+                            Text("Best Result:")
+                                .bold()
+                            Text("P\(bestResult.Results.first!.position) \(bestResult.raceName) \(bestResult.date)")
+                        }
+                        .font(.title)
+                        HStack {
+                            Text("Race Wins: ")
+                                .bold()
+                            Text(driverVm.raceWinTotal)
+                        }
+                        .font(.title)
+                        HStack {
+                            Text("Podium Finishes:")
+                                .bold()
+                            Text(driverVm.poduimFinishes)
+                                
+                        }
+                        .font(.title)
+                        Text(generateConstructorList(races:driverVm.allRaces))
+                            .font(.title)
+                            .bold()
+                        HStack {
+                            Text("Races Driven:")
+                                .bold()
+                            Text(String(driverVm.allRaces.count))
+                        }
+                        .font(.title)
+                        
+                    }
+                    .navigationTitle(driverName)
+                } else {
+                    Text("Loading Driver Data")
+                }
+            } else {
+                Text("Loading \(driverId)")
+                
             }
         }
-        .navigationTitle(driver.givenName)
         .refreshable {
-            await driverVm.loadAllData(driverId: driver.driverId)
+            await driverVm.loadAllData(driverId: driverId)
         }
-        
         .task{
-            await driverVm.loadAllData(driverId: driver.driverId)
+            await driverVm.loadAllData(driverId: driverId)
         }
-        
-        
     }
     
 }
 
 struct DriverDetail_Previews: PreviewProvider {
     static var previews: some View {
-        DriverDetail(driver: Driver(driverId: "alonso", permanentNumber: "1", code: "ALO", url: ".com", givenName: "Fernando", familyName: "Alonso", dateOfBirth: "10-10-2022", nationality: "Spanish"))
+        DriverDetail(driverId: "zhou")
     }
 }

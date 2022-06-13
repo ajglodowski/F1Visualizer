@@ -41,7 +41,36 @@ func getFlag(nationality: String) -> String {
         return "🇮🇹"
     case "Austrian", "Austria":
         return "🇦🇹"
+    case "Azerbaijani","Azerbaijan":
+        return "🇦🇿"
     default:
         return ""
     }
+}
+
+func generateConstructorList(races: [Race]) -> String {
+    var cons = [Constructor]()
+    var output = "Constructors: "
+    for race in races {
+        if (!cons.contains(race.Results.first!.Constructor)) {
+            cons.append(race.Results.first!.Constructor)
+            output += (race.Results.first!.Constructor.name + ", ")
+        }
+    }
+    output = String(output.dropLast(2))
+    return output
+}
+
+func generateRaceWins(races: [Race]) -> [Race] {
+    return []
+}
+
+func generateBestResult(races: [Race]) -> Race {
+    var bestRace = races.first!
+    for race in races.sorted{ $0.season > $1.season} {
+        if (Int(race.Results.first!.position)! < Int(bestRace.Results.first!.position)!) {
+            bestRace = race
+        }
+    }
+    return bestRace
 }

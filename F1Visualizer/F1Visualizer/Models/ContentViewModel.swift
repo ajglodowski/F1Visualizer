@@ -5,6 +5,7 @@ class ContentViewModel: ObservableObject {
 
     @Published var isFetching = false
     @Published var drivers = [Driver]()
+    @Published var standings: [StandingItem]?
 
     @Published var errorMessage = ""
 
@@ -20,8 +21,8 @@ class ContentViewModel: ObservableObject {
 
             guard (response as? HTTPURLResponse)?.statusCode == 200 else { fatalError("Error while fetching data") }
             let decodedResponse = try JSONDecoder().decode(apiResponse.self, from: data)
-            let standings =  decodedResponse.MRData.StandingsTable!.StandingsLists.first?.DriverStandings ?? []
-            for standing in standings {
+            self.standings =  decodedResponse.MRData.StandingsTable!.StandingsLists.first?.DriverStandings ?? []
+            for standing in standings! {
                 tempDrivers.append(standing.Driver!)
             }
             drivers = tempDrivers

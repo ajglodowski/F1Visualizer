@@ -9,7 +9,7 @@ import Foundation
 
 func getFastestTime(race: Race) -> Result? {
     for result in race.Results {
-        if (result.FastestLap.rank == "1") {
+        if (result.FastestLap!.rank == "1") {
             return result
         }
     }

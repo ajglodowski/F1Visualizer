@@ -21,6 +21,12 @@ struct MRData: Codable {
     var StandingsTable: StandingsTable?
     var SeasonTable: SeasonTable?
     var RaceTable: RaceTable?
+    var DriverTable: DriverTable?
+}
+
+struct DriverTable: Codable {
+    var driverId: String
+    var Drivers: [Driver]
 }
 
 struct StandingsTable: Codable {
@@ -33,7 +39,7 @@ struct StandingList: Codable {
     var season: String
     var round: String?
     var DriverStandings: [StandingItem]?
-    var ConstructorsStandings: [StandingItem]?
+    var ConstructorStandings: [StandingItem]?
 }
 
 struct StandingItem: Codable {
@@ -44,6 +50,7 @@ struct StandingItem: Codable {
     var Driver: Driver?
     var Constructor: Constructor?
     var Constructors: [Constructor]?
+    //var Constructors: [Constructor]?
 }
 
 struct SeasonTable: Codable {
@@ -60,8 +67,8 @@ struct Season: Codable {
 struct RaceTable: Codable {
     var driverId: String?
     var position: String?
-    var season: String
-    var round: String
+    var season: String?
+    var round: String?
     var Races: [Race]
 }
 
@@ -100,7 +107,7 @@ struct Result: Codable {
     var laps: String
     var status: String
     var Time: Time?
-    var FastestLap: FastestLap
+    var FastestLap: FastestLap?
 }
 
 struct Time: Codable {

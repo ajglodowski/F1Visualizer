@@ -9,9 +9,19 @@ import SwiftUI
 
 struct CurrentDriverStandings: View {
     
-    var drivers: [Driver]
+    
+    @ObservedObject var vm = ContentViewModel()
+    
+    var hardDrivers: [Driver]?
+    
+    var drivers: [Driver] {
+        if (hardDrivers == nil) { return vm.drivers }
+        else { return hardDrivers!}
+    }
     
     var body: some View {
+        //Text("Test")
+        
         NavigationStack {
             List(drivers) { driver in
                 NavigationLink(value: driver) {
@@ -19,16 +29,24 @@ struct CurrentDriverStandings: View {
                 }
             }
             .navigationDestination(for: Driver.self) { driver in
-                DriverDetail(driver: driver)
+                DriverDetail(driverId: driver.id)
             }
         }
+        .task {
+            await vm.fetchData()
+        }
+        .refreshable {
+            await vm.fetchData()
+        }
         .navigationTitle("Driver Standings")
+        
     }
 }
 
 struct CurrentDriverStandings_Previews: PreviewProvider {
     static var previews: some View {
         let input = [Driver(driverId: "alonso", permanentNumber: "1", code: "ALO", url: ".com", givenName: "Fernando", familyName: "Alonso", dateOfBirth: "10-10-2022", nationality: "Spanish")]
-        CurrentDriverStandings(drivers: input)
+        CurrentDriverStandings()
+        //CurrentDriverStandings(hardDrivers: input)
     }
 }

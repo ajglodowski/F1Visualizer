@@ -21,17 +21,30 @@ class RaceDataViewModel: ObservableObject {
             } else {
                 url = URL(string: "https://ergast.com/api/f1/current/last/results.json")!
             }
-            print("Fetching: "+url.absoluteString)
+            //print("Fetching: "+url.absoluteString)
             let urlRequest = URLRequest(url: url)
             let (data, response) = try await URLSession.shared.data(for: urlRequest)
             guard (response as? HTTPURLResponse)?.statusCode == 200 else { fatalError("Error while fetching data") }
             let decodedResponse = try JSONDecoder().decode(apiResponse.self, from: data)
-            print("Decoded Response: ")
             let result =  decodedResponse.MRData.RaceTable!
-            rawRaceResult = result
-            isFetching = false
+            //print(rawRaceResult)
+            var tempDrivers = [Driver]()
+            for part in (result.Races[0].Results) {
+                tempDrivers.append(part.Driver)
+            }
+            /*
+            DispatchQueue.main.async {
+                self.drivers = tempDrivers
+                self.rawRaceResult = result
+            }
+             */
+            self.drivers = tempDrivers
+            self.rawRaceResult = result
+            //print(self.rawRaceResult)
+            //print(self.drivers)
+            self.isFetching = false
         } catch {
-            isFetching = false
+            self.isFetching = false
             print("Failed to reach endpoint: \(error)")
             //fatalError("Error in race data")
         }
@@ -42,18 +55,18 @@ class RaceDataViewModel: ObservableObject {
         for part in (rawRaceResult?.Races[0].Results) ?? [] {
             tempDrivers.append(part.Driver)
         }
-        drivers = tempDrivers
+        self.drivers = tempDrivers
     }
     
     func fetchMostRecentRace() async {
         await fetchRace(year: "", round: "", current: true)
-        await extractDrivers()
+        //await extractDrivers()
     }
     
     func fetchAll(year: String, round: String) async {
         await fetchRace(year: year, round: round, current: false)
-        await extractDrivers()
-        print(drivers[0].nationality)
+        //await extractDrivers()
+        //print(self.drivers[0].nationality)
     }
     
     

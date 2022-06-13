@@ -19,8 +19,9 @@ struct CurrentConstructorStandingsRow: View {
                 ScrollView(.horizontal){
                     HStack {
                         ForEach (0..<cdvm.constructors.count) { ind in
-                            ConstructorTile(constructor: cdvm.constructors[ind], extraText: String(ind+1))
-                                .frame(maxHeight:300)
+                            let p = "Points: " + cdvm.standings[ind].points
+                            ConstructorTile(constructor: cdvm.constructors[ind], extraText: [String(ind+1), p], color: getConstructorColor(constructor: cdvm.constructors[ind]))
+                                .frame(width:200, height: 300)
                         }
                     }
                 }
