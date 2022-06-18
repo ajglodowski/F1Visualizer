@@ -17,6 +17,8 @@ class DriverDataViewModel: ObservableObject {
     @Published var poduimFinishes = ""
     @Published var allRaces = [Race]()
     @Published var loading = false
+    @Published var mostRecentConstructor: Constructor?
+    @Published var mostRecentRace: Race?
     
     
     @MainActor
@@ -27,12 +29,14 @@ class DriverDataViewModel: ObservableObject {
         self.allRaces = await fetchAllRaces(driverId: driverId)
         self.raceWinTotal = await getRaceWins()
         self.poduimFinishes = await getPodiumFinishes()
+        self.mostRecentRace = getMostRecentRace(races: self.allRaces)
+        self.mostRecentConstructor = mostRecentRace!.Results.first!.Constructor
         self.loading = false
     }
     
     func fetchDriverInfo(driverId: String) async {
         do {
-            //print("at fetch start")
+            print("at fetch start")
             let s = "https://ergast.com/api/f1/drivers/"+driverId+".json"
             //print(s)
             guard let url = URL(string: s) else { fatalError("Missing URL") }
@@ -44,7 +48,7 @@ class DriverDataViewModel: ObservableObject {
             self.driver =  decodedResponse.MRData.DriverTable?.Drivers.first
             //print(self.driver)
         } catch {
-            fatalError("Failed to reach endpoint: \(error)")
+            print("Failed to reach endpoint: \(error)")
         }
     }
     
@@ -60,7 +64,7 @@ class DriverDataViewModel: ObservableObject {
             let decodedResponse = try JSONDecoder().decode(apiResponse.self, from: data)
             self.championshipWinTotal =  decodedResponse.MRData.total
         } catch {
-            fatalError("Failed to reach endpoint: \(error)")
+            print("Failed to reach endpoint: \(error)")
         }
     }
     
@@ -76,7 +80,7 @@ class DriverDataViewModel: ObservableObject {
             let decodedResponse = try JSONDecoder().decode(apiResponse.self, from: data)
             return decodedResponse.MRData.RaceTable?.Races ?? []
         } catch {
-            fatalError("Failed to reach endpoint: \(error)")
+            print("Failed to reach endpoint: \(error)")
             return []
             //print("Failed to reach endpoint: \(error)")
         }
@@ -120,6 +124,8 @@ class DriverDataViewModel: ObservableObject {
     func getPodiumFinishes() async -> String {
         return String(self.allRaces.filter{ $0.Results.first!.position == "1" || $0.Results.first!.position == "2" || $0.Results.first!.position == "3"}.count)
     }
+    
+    
 
 }
 

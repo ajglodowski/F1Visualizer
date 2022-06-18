@@ -39,8 +39,18 @@ func getConstructorColor(constructor: Constructor) -> Color {
         return Color(red: 30/255, green: 91/255, blue: 198/255)
     case "williams":
         return Color(red: 55/255, green: 190/255, blue: 221/255)
+    case "racing point":
+        return Color(red: 245/255, green: 150/255, blue: 200/255)
+    case "toro rosso":
+         return Color(red: 70/255, green: 155/255, blue: 255/255)
+    case "force india":
+         return Color(red: 245/255, green: 150/255, blue: 200/255)
+    case "renault":
+         return Color(red: 255/255, green: 245/255, blue: 0/255)
+    case "sauber":
+         return Color(red: 155/255, green: 0/255, blue: 0/255)
     default:
-        return Color(.systemPink)
+        return Color(.white)
     }
     return Color(.blue)
 }

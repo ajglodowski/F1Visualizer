@@ -15,7 +15,7 @@ struct DriverPhotoTile: View {
     //let iconShape = RoundedRectangle(cornerRadius: 20, style: .continuous)
     
     var body: some View {
-        NavigationLink(destination: DriverDetail(driverId: driver.driverId)) {
+        //NavigationLink(destination: DriverDetail(driverId: driver.driverId)) {
             VStack {
                 LinearGradient(gradient: Gradient(colors: [color ?? .white, .black]), startPoint: .top, endPoint: .bottom)
                     .overlay {
@@ -46,7 +46,7 @@ struct DriverPhotoTile: View {
             }
             
             .cornerRadius(20)
-        }
+        //}
         //.padding(6)
     }
         

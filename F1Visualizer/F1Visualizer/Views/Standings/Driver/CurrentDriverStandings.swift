@@ -21,15 +21,9 @@ struct CurrentDriverStandings: View {
     
     var body: some View {
         //Text("Test")
-        
-        NavigationStack {
-            List(drivers) { driver in
-                NavigationLink(value: driver) {
-                    DriverStandingsRow(driver: driver, position: String(drivers.firstIndex(where: { $0 == driver})!+1))
-                }
-            }
-            .navigationDestination(for: Driver.self) { driver in
-                DriverDetail(driverId: driver.id)
+        List(drivers) { driver in
+            NavigationLink(destination: DriverDetail(driverId: driver.id)) {
+                DriverStandingsRow(driver: driver, position: String(drivers.firstIndex(where: { $0 == driver})!+1))
             }
         }
         .task {

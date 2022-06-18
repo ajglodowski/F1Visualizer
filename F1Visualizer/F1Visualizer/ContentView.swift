@@ -13,61 +13,18 @@ struct ContentView: View {
     //@ObservedObject var rdvm = RaceDataViewModel()
     
     var body: some View {
-        NavigationStack {
-            List {
-                VStack {
-                    Image("alonso")
-                }
-                VStack () {
-                    NavigationLink(value: 1) {
-                        CurrentDriverStandingsRow()
-                            //.frame(maxHeight: 700)
+        TabView {
+            CurrentPage()
+                .tabItem {
+                    //Label("Current season", systemImage: "list.bullet")
+                    VStack {
+                        Text("🏆 Current Season")
                     }
                 }
-                    
-                VStack {
-                    NavigationLink(value: 2) {
-                        CurrentConstructorStandingsRow()
-                    }
+            PreviousPage()
+                .tabItem {
+                    Label("All Seasons", systemImage: "list.bullet")
                 }
-                
-                VStack (alignment: .center) {
-                    NavigationLink(value: 3) {
-                        RaceRow(mostRecent: true)
-                            //.frame(maxHeight: 500)
-                    }
-                        
-                }
-                VStack (alignment: .center) {
-                    NavigationLink(value: 3) {
-                        RaceRow(mostRecent: false, year:"2022", round:"1")
-                            //.frame(maxHeight: 500)
-                    }
-                        
-                }
-            }
-            .task {
-                //await vm.fetchData()
-                //await rdvm.fetchMostRecentRace()
-            }
-            .refreshable {
-                //await vm.fetchData()
-            }
-            .navigationDestination(for: Int.self) { val in
-                switch val{
-                case 1:
-                    //CurrentDriverStandings()
-                    DriverDetail(driverId:"alonso")
-                case 2:
-                    CurrentConstructorStandings()
-                case 3:
-                    RaceDetail(year: "2022", round: "1")
-                default:
-                    //CurrentDriverStandings(drivers: vm.drivers)
-                    Text("Error")
-                }
-            }
-            .navigationTitle("F1 Visualizer")
         }
     }
 }

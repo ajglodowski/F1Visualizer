@@ -9,7 +9,7 @@ import Foundation
 
 struct Driver: Hashable, Identifiable, Codable {
     var driverId: String
-    var permanentNumber: String
+    var permanentNumber: String?
     var code: String
     var url: String
     var givenName: String

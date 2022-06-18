@@ -11,8 +11,9 @@ struct RaceDetail: View {
     
     @StateObject var rm = RaceDataViewModel()
     
-    var year: String
-    var round: String
+    var current: Bool
+    var year: String?
+    var round: String?
     
     @State var raceSection: Int = 0
     //var raceSections: [any View] = [RaceInfo(), QualifyingResults()]
@@ -58,13 +59,12 @@ struct RaceDetail: View {
             }
         }
         .refreshable {
-            //await rm.fetchAll(year: year, round: round)
-            await rm.fetchMostRecentRace()
+            if (!current) { await rm.fetchAll(year: year!, round: round!) }
+            else { await rm.fetchMostRecentRace() }
         }
         .task {
-            //await rm.fetchAll(year: year, round: round)
-            //await rm.fetchRace(year: year, round: round, current: false)
-            await rm.fetchMostRecentRace()
+            if (!current) { await rm.fetchAll(year: year!, round: round!) }
+            else { await rm.fetchMostRecentRace() }
         }
     }
 }
@@ -183,7 +183,11 @@ struct DriverRowRace: View {
                 Image(raceResult.Constructor.name.lowercased())
                     .resizable()
                     .scaledToFit()
-                    .frame(maxWidth: 75, maxHeight: 25)
+                    .frame(maxWidth: 100, maxHeight: 40)
+                    .padding(10)
+                    //.background(.white)
+                    .background(.ultraThickMaterial)
+                    .cornerRadius(5)
             }
             HStack {
                 if (raceResult.status == "Finished") {
@@ -219,8 +223,8 @@ struct QualifyingResults: View {
                 VStack (alignment: .center) {
                     ForEach(0..<results!.count) { resultInd in
                         if (resultInd % 2 == 0) {
-                            //Text(results![resultInd].Driver.givenName + results![resultInd].grid)
-                            DriverPhotoTile(driver: results![resultInd].Driver, extraText: [String(resultInd+1)], color: getConstructorColor(constructor: results![resultInd].Constructor))
+                            let r = results![resultInd]
+                            DriverPhotoTile(driver: r.Driver, extraText: [String(resultInd+1)], color: getConstructorColor(constructor: r.Constructor))
                                 .frame(height: 300)
                                 .frame(minWidth: 200)
                         }
@@ -229,14 +233,14 @@ struct QualifyingResults: View {
                 VStack (alignment: .center) {
                     ForEach(0..<results!.count) { resultInd in
                         if (resultInd % 2 != 0) {
-                            //Text(results![resultInd].Driver.givenName + results![resultInd].grid)
-                            DriverPhotoTile(driver: results![resultInd].Driver, extraText: [String(resultInd+1)], color: getConstructorColor(constructor: results![resultInd].Constructor))
+                            let o = results![resultInd]
+                            DriverPhotoTile(driver: o.Driver, extraText: [String(resultInd+1)], color: getConstructorColor(constructor: o.Constructor))
                                 .frame(height: 300)
                                 .frame(minWidth: 200)
                         }
                     }
                 }
-                .padding(.top, 150)
+                .padding(.top, 300)
                 //Spacer()
             }
         } else {
@@ -247,6 +251,6 @@ struct QualifyingResults: View {
 
 struct RaceDetail_Previews: PreviewProvider {
     static var previews: some View {
-        RaceDetail(year: "2022", round: "1")
+        RaceDetail(current: false, year: "2022", round: "1")
     }
 }

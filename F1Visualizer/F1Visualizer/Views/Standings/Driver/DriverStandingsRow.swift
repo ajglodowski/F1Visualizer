@@ -25,7 +25,7 @@ struct DriverStandingsRow: View {
                 .font(.title)
             Spacer()
             Text(driver.code)
-            Text(driver.permanentNumber)
+            Text(driver.permanentNumber ?? "")
         }
         .padding()
     }

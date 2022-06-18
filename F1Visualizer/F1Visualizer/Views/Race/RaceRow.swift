@@ -12,11 +12,34 @@ struct RaceRow: View {
     @ObservedObject var rdvm = RaceDataViewModel()
     
     var mostRecent: Bool
-    var year: String?
+    var season: String?
     var round: String?
     
     var raceName: String {
-        ((rdvm.rawRaceResult?.Races[0].raceName ?? "") + (getFlag(nationality: rdvm.rawRaceResult?.Races[0].Circuit.Location.country ?? ""))) ?? ""
+        var flag = getFlag(nationality: rdvm.rawRaceResult?.Races[0].Circuit.Location.country ?? "")
+        return ((rdvm.rawRaceResult?.Races[0].raceName ?? "") + flag)
+    }
+    
+    func getTileColor(ind: Int) -> Color {
+        switch ind {
+        case 0:
+            return Color(red: 241/255, green: 229/255, blue: 172/255)
+        case 1:
+            return Color(red: 225/255, green: 225/255, blue: 225/255)
+        case 2:
+            return Color(red: 206/255, green: 161/255, blue: 117/255)
+        default:
+            if (ind < 10) { return .green }
+            else { return .red }
+        }
+        
+    }
+    
+    func getPosText(ind: Int) -> String {
+        if (ind == 0) { return "🥇" }
+        else if (ind == 1) { return "🥈" }
+        else if (ind == 2) { return "🥉" }
+        else { return String(ind+1) }
     }
     
     var body: some View {
@@ -31,26 +54,24 @@ struct RaceRow: View {
                 Text(raceName)
                     .font(.title)
                     .bold()
+                Text(rdvm.rawRaceResult?.Races[0].date ?? "")
             }
             if (!rdvm.drivers.isEmpty) {
-                
-                ScrollView(.horizontal){
+                ScrollView(.horizontal) {
                     HStack {
-                        DriverPhotoTile(driver: rdvm.drivers[0], extraText: ["🥇"], color: Color(red: 241/255, green: 229/255, blue: 172/255))
-                            //.frame(maxHeight:300)
-                            .frame(width: 250, height:300)
-                        DriverPhotoTile(driver: rdvm.drivers[1], extraText: ["🥈"], color: Color(red: 225/255, green: 225/255, blue: 225/255))
-                            //.frame(maxHeight:300)
-                            .frame(width: 250, height:300)
-                        DriverPhotoTile(driver: rdvm.drivers[2], extraText: ["🥉"],color: Color(red: 206/255, green: 161/255, blue: 117/255))
-                            //.frame(maxHeight:300)
-                            .frame(width: 250, height:300)
-                        ForEach (3..<rdvm.drivers.count) { ind in
-                            DriverPhotoTile(driver: rdvm.drivers[ind], extraText: [String(ind+1)])
-                                //.frame(maxHeight:300)
-                                .frame(width: 250, height:300)
+                        ForEach (0..<rdvm.drivers.count) { ind in
+                            NavigationLink(destination: DriverDetail(driverId: rdvm.drivers[ind].driverId)) {
+                                DriverPhotoTile(driver: rdvm.drivers[ind], extraText: [getPosText(ind: ind)], color: getTileColor(ind: ind))
+                                    //.frame(maxHeight:300)
+                                    .frame(width: 250, height:300)
+                            }
                         }
                     }
+                    /*
+                    .navigationDestination(for: Driver.self) { driver in
+                        DriverDetail(driverId: driver.driverId)
+                    }
+                     */
                 }
 
             }
@@ -58,7 +79,7 @@ struct RaceRow: View {
         .padding()
         .task {
             if (mostRecent) { await rdvm.fetchMostRecentRace() }
-            else { await rdvm.fetchAll(year: year!, round: round!) }
+            else { await rdvm.fetchAll(year: season!, round: round!) }
         }
     }
 }
@@ -66,6 +87,6 @@ struct RaceRow: View {
 struct RaceRow_Previews: PreviewProvider {
     static var previews: some View {
         //RaceRow(mostRecent: true)
-        RaceRow(mostRecent: false, year: "2022", round: "1")
+        RaceRow(mostRecent: false, season: "2022", round: "1")
     }
 }
