@@ -11,6 +11,7 @@ struct CurrentPage: View {
     var body: some View {
         NavigationView {
             List {
+                
                 VStack (alignment: .center) {
                     NavigationLink(destination: RaceDetail(current: true)) {
                         RaceRow(mostRecent: true)
@@ -27,6 +28,10 @@ struct CurrentPage: View {
                         CurrentDriverStandingsRow()
                             //.frame(maxHeight: 700)
                     }
+                }
+                
+                VStack {
+                    TeammateComparisonTile()
                 }
                     
                 VStack {

@@ -9,12 +9,15 @@ import Foundation
 
 class DriverStandingsViewModel: ObservableObject {
     
+    @Published var loading = false
     @Published var allResults = [StandingList]()
     @Published var year = ""
     
     @MainActor
     func loadAllData() async {
+        self.loading = true
         self.allResults = await collectAllStandings()
+        self.loading = false
     }
     
     func fetchSpecificStandings(year: String, round: String) async -> StandingList? {
@@ -56,9 +59,11 @@ class DriverStandingsViewModel: ObservableObject {
         let mostRecentStandings = await currentDriverStandings()!
         self.year = mostRecentStandings.season
         for round in (1...(Int(mostRecentStandings.round!)!-1)) {
+            //print("Season \(mostRecentStandings.season) Round \(round)")
             tempResults.append(await fetchSpecificStandings(year: mostRecentStandings.season, round: String(round))!)
         }
         tempResults.append(mostRecentStandings)
+        //print(tempResults)
         return tempResults
     }
 }

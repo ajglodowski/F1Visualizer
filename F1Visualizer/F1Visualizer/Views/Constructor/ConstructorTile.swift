@@ -28,13 +28,13 @@ struct ConstructorTile: View {
                         //.frame(width:75, height: 75)
                         VStack {
                             Text(constructor.name)
-                                .font(.title)
+                                .font(.headline)
                                 .bold()
                             if (extraText != nil) {
                                 VStack {
                                     ForEach (0..<extraText!.count) { ind in
                                         Text(extraText![ind])
-                                            .font(.title)
+                                            .font(.headline)
                                     }
                                 }
                             }

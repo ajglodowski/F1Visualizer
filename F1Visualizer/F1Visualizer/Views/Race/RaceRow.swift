@@ -62,8 +62,6 @@ struct RaceRow: View {
                         ForEach (0..<rdvm.drivers.count) { ind in
                             NavigationLink(destination: DriverDetail(driverId: rdvm.drivers[ind].driverId)) {
                                 DriverPhotoTile(driver: rdvm.drivers[ind], extraText: [getPosText(ind: ind)], color: getTileColor(ind: ind))
-                                    //.frame(maxHeight:300)
-                                    .frame(width: 250, height:300)
                             }
                         }
                     }
@@ -76,10 +74,10 @@ struct RaceRow: View {
 
             }
         }
-        .padding()
+        //.padding()
         .task {
-            if (mostRecent) { await rdvm.fetchMostRecentRace() }
-            else { await rdvm.fetchAll(year: season!, round: round!) }
+            if (mostRecent) { await rdvm.fetchAll(year: "", round: "", current: true) }
+            else { await rdvm.fetchAll(year: season!, round: round!, current: false) }
         }
     }
 }

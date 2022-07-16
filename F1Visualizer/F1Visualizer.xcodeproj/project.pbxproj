@@ -7,11 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A0BBFEB2873B1740012D103 /* TeammateComparisonByPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0BBFEA2873B1740012D103 /* TeammateComparisonByPoints.swift */; };
+		1A0BBFED2873B3650012D103 /* TeammateComparisonHeadToHead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0BBFEC2873B3650012D103 /* TeammateComparisonHeadToHead.swift */; };
+		1A0BBFEF2873B9690012D103 /* SeasonRaceDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0BBFEE2873B9690012D103 /* SeasonRaceDataViewModel.swift */; };
 		1A15143028515522000CFF3B /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A15142F28515522000CFF3B /* HelperFunctions.swift */; };
 		1A15143228515798000CFF3B /* RaceHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A15143128515798000CFF3B /* RaceHelpers.swift */; };
 		1A151435285157C2000CFF3B /* RaceDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A151434285157C2000CFF3B /* RaceDetail.swift */; };
 		1A151437285157E9000CFF3B /* RaceDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A151436285157E9000CFF3B /* RaceDataViewModel.swift */; };
 		1A15143928515BEC000CFF3B /* RaceRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A15143828515BEC000CFF3B /* RaceRow.swift */; };
+		1A3F26B7287FCF97002FE2BE /* TeammateComparisonTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3F26B6287FCF97002FE2BE /* TeammateComparisonTile.swift */; };
+		1A63F15D2873722500A8FFD6 /* TeammateComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A63F15C2873722500A8FFD6 /* TeammateComparison.swift */; };
 		1A7686F92850583B00E3EEDB /* CurrentConstructorStandingsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7686F82850583B00E3EEDB /* CurrentConstructorStandingsRow.swift */; };
 		1A7686FC2850588900E3EEDB /* CurrentConstructorStandings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7686FB2850588900E3EEDB /* CurrentConstructorStandings.swift */; };
 		1A9D6391284F061B00BB59B6 /* MRData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9D6390284F061B00BB59B6 /* MRData.swift */; };
@@ -41,6 +46,7 @@
 		1AD4C61D285AD0FB00912E49 /* ConstructorStandingGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD4C61C285AD0FB00912E49 /* ConstructorStandingGraph.swift */; };
 		1AD4C61F285AD12500912E49 /* DriverStandingGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD4C61E285AD12500912E49 /* DriverStandingGraph.swift */; };
 		1AD4C621285AD1C400912E49 /* DriverStandingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD4C620285AD1C400912E49 /* DriverStandingsViewModel.swift */; };
+		1AE92432287A6D7500345E5B /* TeammateComparisonGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE92431287A6D7500345E5B /* TeammateComparisonGrid.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,11 +67,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A0BBFEA2873B1740012D103 /* TeammateComparisonByPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeammateComparisonByPoints.swift; sourceTree = "<group>"; };
+		1A0BBFEC2873B3650012D103 /* TeammateComparisonHeadToHead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeammateComparisonHeadToHead.swift; sourceTree = "<group>"; };
+		1A0BBFEE2873B9690012D103 /* SeasonRaceDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonRaceDataViewModel.swift; sourceTree = "<group>"; };
 		1A15142F28515522000CFF3B /* HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
 		1A15143128515798000CFF3B /* RaceHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceHelpers.swift; sourceTree = "<group>"; };
 		1A151434285157C2000CFF3B /* RaceDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceDetail.swift; sourceTree = "<group>"; };
 		1A151436285157E9000CFF3B /* RaceDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceDataViewModel.swift; sourceTree = "<group>"; };
 		1A15143828515BEC000CFF3B /* RaceRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceRow.swift; sourceTree = "<group>"; };
+		1A3F26B6287FCF97002FE2BE /* TeammateComparisonTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeammateComparisonTile.swift; sourceTree = "<group>"; };
+		1A63F15C2873722500A8FFD6 /* TeammateComparison.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeammateComparison.swift; sourceTree = "<group>"; };
 		1A7686F82850583B00E3EEDB /* CurrentConstructorStandingsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentConstructorStandingsRow.swift; sourceTree = "<group>"; };
 		1A7686FB2850588900E3EEDB /* CurrentConstructorStandings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentConstructorStandings.swift; sourceTree = "<group>"; };
 		1A9D6390284F061B00BB59B6 /* MRData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MRData.swift; sourceTree = "<group>"; };
@@ -99,6 +110,7 @@
 		1AD4C61C285AD0FB00912E49 /* ConstructorStandingGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorStandingGraph.swift; sourceTree = "<group>"; };
 		1AD4C61E285AD12500912E49 /* DriverStandingGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverStandingGraph.swift; sourceTree = "<group>"; };
 		1AD4C620285AD1C400912E49 /* DriverStandingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverStandingsViewModel.swift; sourceTree = "<group>"; };
+		1AE92431287A6D7500345E5B /* TeammateComparisonGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeammateComparisonGrid.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +138,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A0BBFE92873B14E0012D103 /* TeammateComparison */ = {
+			isa = PBXGroup;
+			children = (
+				1A63F15C2873722500A8FFD6 /* TeammateComparison.swift */,
+				1A0BBFEA2873B1740012D103 /* TeammateComparisonByPoints.swift */,
+				1A0BBFEC2873B3650012D103 /* TeammateComparisonHeadToHead.swift */,
+				1AE92431287A6D7500345E5B /* TeammateComparisonGrid.swift */,
+				1A3F26B6287FCF97002FE2BE /* TeammateComparisonTile.swift */,
+			);
+			path = TeammateComparison;
+			sourceTree = "<group>";
+		};
 		1A151433285157B5000CFF3B /* Race */ = {
 			isa = PBXGroup;
 			children = (
@@ -159,6 +183,7 @@
 		1A9D6394284FB9E700BB59B6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1A0BBFE92873B14E0012D103 /* TeammateComparison */,
 				1AB7E9F82853045A00546263 /* Constructor */,
 				1A151433285157B5000CFF3B /* Race */,
 				1A9D6397284FBA1500BB59B6 /* Standings */,
@@ -190,6 +215,7 @@
 				1A151436285157E9000CFF3B /* RaceDataViewModel.swift */,
 				1AB7E9F62853037D00546263 /* ConstructorsDataViewModel.swift */,
 				1AD4C620285AD1C400912E49 /* DriverStandingsViewModel.swift */,
+				1A0BBFEE2873B9690012D103 /* SeasonRaceDataViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -405,8 +431,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A7686FC2850588900E3EEDB /* CurrentConstructorStandings.swift in Sources */,
+				1A0BBFED2873B3650012D103 /* TeammateComparisonHeadToHead.swift in Sources */,
 				1A15143928515BEC000CFF3B /* RaceRow.swift in Sources */,
 				1A9D6399284FBA8500BB59B6 /* CurrentDriverStandings.swift in Sources */,
+				1AE92432287A6D7500345E5B /* TeammateComparisonGrid.swift in Sources */,
 				1A9D639B284FBBFA00BB59B6 /* DriverStandingsRow.swift in Sources */,
 				1A9D639F284FE92700BB59B6 /* DriverDataViewModel.swift in Sources */,
 				1ACC6576284EE777004A2546 /* ContentView.swift in Sources */,
@@ -419,11 +447,15 @@
 				1A9D6391284F061B00BB59B6 /* MRData.swift in Sources */,
 				1A9D639D284FE8DC00BB59B6 /* ContentViewModel.swift in Sources */,
 				1ACC65A3284EEB2F004A2546 /* ModelData.swift in Sources */,
+				1A0BBFEF2873B9690012D103 /* SeasonRaceDataViewModel.swift in Sources */,
 				1ACC65A5284EF2D8004A2546 /* CurrentDriverStandingsRow.swift in Sources */,
+				1A63F15D2873722500A8FFD6 /* TeammateComparison.swift in Sources */,
 				1A9D63A32850091400BB59B6 /* WidthThresholdReader.swift in Sources */,
 				1ACC6574284EE777004A2546 /* F1VisualizerApp.swift in Sources */,
 				1AD4C61D285AD0FB00912E49 /* ConstructorStandingGraph.swift in Sources */,
+				1A3F26B7287FCF97002FE2BE /* TeammateComparisonTile.swift in Sources */,
 				1A151435285157C2000CFF3B /* RaceDetail.swift in Sources */,
+				1A0BBFEB2873B1740012D103 /* TeammateComparisonByPoints.swift in Sources */,
 				1AD4C61B285ACEFF00912E49 /* StandingGraphsRow.swift in Sources */,
 				1A15143028515522000CFF3B /* HelperFunctions.swift in Sources */,
 				1ACC65A1284EE813004A2546 /* Driver.swift in Sources */,

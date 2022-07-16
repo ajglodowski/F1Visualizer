@@ -12,9 +12,9 @@ class RaceDataViewModel: ObservableObject {
     @Published var drivers = [Driver]()
     
     @MainActor
-    func fetchRace(year: String, round: String, current: Bool?) async {
+    func fetchRace(year: String, round: String, current: Bool?) async -> RaceTable? {
         do {
-            isFetching = true
+            self.isFetching = true
             let url: URL
             if (!(current ?? false)) {
                 url = URL(string: "https://ergast.com/api/f1/"+year+"/"+round+"/results.json")!
@@ -26,45 +26,35 @@ class RaceDataViewModel: ObservableObject {
             let (data, response) = try await URLSession.shared.data(for: urlRequest)
             guard (response as? HTTPURLResponse)?.statusCode == 200 else { fatalError("Error while fetching data") }
             let decodedResponse = try JSONDecoder().decode(apiResponse.self, from: data)
-            let result =  decodedResponse.MRData.RaceTable!
+            let result = decodedResponse.MRData.RaceTable!
             //print(rawRaceResult)
             var tempDrivers = [Driver]()
             for part in (result.Races[0].Results) {
                 tempDrivers.append(part.Driver)
             }
-            /*
-            DispatchQueue.main.async {
-                self.drivers = tempDrivers
-                self.rawRaceResult = result
-            }
-             */
-            self.drivers = tempDrivers
-            self.rawRaceResult = result
-            //print(self.rawRaceResult)
-            //print(self.drivers)
             self.isFetching = false
+            return result
         } catch {
             self.isFetching = false
             print("Failed to reach endpoint: \(error)")
+            return nil
             //fatalError("Error in race data")
         }
     }
     
-    func extractDrivers() async {
+    func extractDrivers() -> [Driver] {
         var tempDrivers = [Driver]()
-        for part in (rawRaceResult?.Races[0].Results) ?? [] {
+        for part in self.rawRaceResult!.Races[0].Results {
             tempDrivers.append(part.Driver)
         }
-        self.drivers = tempDrivers
+        return tempDrivers
     }
     
-    func fetchMostRecentRace() async {
-        await fetchRace(year: "", round: "", current: true)
-        //await extractDrivers()
-    }
-    
-    func fetchAll(year: String, round: String) async {
-        await fetchRace(year: year, round: round, current: false)
+    func fetchAll(year: String, round: String, current: Bool) async {
+        self.isFetching = true
+        self.rawRaceResult = await fetchRace(year: year, round: round, current: current)
+        self.drivers = extractDrivers()
+        self.isFetching = false
         //await extractDrivers()
         //print(self.drivers[0].nationality)
     }

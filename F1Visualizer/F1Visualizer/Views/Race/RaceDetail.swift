@@ -33,7 +33,7 @@ struct RaceDetail: View {
                         HStack {
                             Picker("Race Section", selection: $raceSection) {
                                 Text("Race Results").tag(0)
-                                Text("Qualifying Results").tag(1)
+                                Text("Starting Grid").tag(1)
                             }
                             .pickerStyle(.segmented)
                             .padding()
@@ -59,12 +59,12 @@ struct RaceDetail: View {
             }
         }
         .refreshable {
-            if (!current) { await rm.fetchAll(year: year!, round: round!) }
-            else { await rm.fetchMostRecentRace() }
+            if (!current) { await rm.fetchAll(year: year!, round: round!, current: false) }
+            else { await rm.fetchAll(year: "", round: "", current: true) }
         }
         .task {
-            if (!current) { await rm.fetchAll(year: year!, round: round!) }
-            else { await rm.fetchMostRecentRace() }
+            if (!current) { await rm.fetchAll(year: year!, round: round!, current: false) }
+            else { await rm.fetchAll(year: "", round: "", current: true) }
         }
     }
 }
@@ -219,14 +219,12 @@ struct QualifyingResults: View {
         if (raceResult != nil) {
             HStack(alignment: .center) {
                 //Spacer()
-                var results: [Result]? = raceResult?.Races.first?.Results.sorted(by:{ Int($0.grid)! < Int($1.grid)!}) ?? nil
+                var results: [Result]? = raceResult?.Races.first?.Results.filter{ $0.grid == "0"}.sorted(by:{ Int($0.grid)! < Int($1.grid)!}) ?? nil
                 VStack (alignment: .center) {
                     ForEach(0..<results!.count) { resultInd in
                         if (resultInd % 2 == 0) {
                             let r = results![resultInd]
                             DriverPhotoTile(driver: r.Driver, extraText: [String(resultInd+1)], color: getConstructorColor(constructor: r.Constructor))
-                                .frame(height: 300)
-                                .frame(minWidth: 200)
                         }
                     }
                 }
@@ -235,12 +233,10 @@ struct QualifyingResults: View {
                         if (resultInd % 2 != 0) {
                             let o = results![resultInd]
                             DriverPhotoTile(driver: o.Driver, extraText: [String(resultInd+1)], color: getConstructorColor(constructor: o.Constructor))
-                                .frame(height: 300)
-                                .frame(minWidth: 200)
                         }
                     }
                 }
-                .padding(.top, 300)
+                .padding(.top, 75)
                 //Spacer()
             }
         } else {

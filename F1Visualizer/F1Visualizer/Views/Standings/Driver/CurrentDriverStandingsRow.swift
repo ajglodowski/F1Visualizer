@@ -25,7 +25,6 @@ struct CurrentDriverStandingsRow: View {
                         ForEach (0..<vm.standings!.count) { ind in
                             NavigationLink(destination: DriverDetail(driverId: vm.drivers[ind].driverId)) {
                                 DriverPhotoTile(driver: vm.drivers[ind], extraText: [String(ind+1)], color: getConstructorColor(constructor: vm.standings![ind].Constructors!.first!))
-                                    .frame(width: 250, height:300)
                                 //.shadow(.drop(color: .black, radius: 10))
                             }
                                 

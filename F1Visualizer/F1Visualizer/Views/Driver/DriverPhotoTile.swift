@@ -26,14 +26,14 @@ struct DriverPhotoTile: View {
                             //.frame(width:75, height: 75)
                             let text = driver.givenName+" "+driver.familyName
                             Text(text)
-                                .font(.title)
+                                .font(.headline)
                                 .bold()
                                 .padding(EdgeInsets(top: 0, leading: 2, bottom: 0, trailing: 2))
                             if (extraText != nil) {
                                 VStack {
                                     ForEach (0..<extraText!.count) { ind in
                                         Text(extraText![ind])
-                                            .font(.title)
+                                            .font(.headline)
                                     }
                                 }
                             }
@@ -44,7 +44,7 @@ struct DriverPhotoTile: View {
                         //.fill
                     }
             }
-            
+            .frame(width: 150, height: 150)
             .cornerRadius(20)
         //}
         //.padding(6)
