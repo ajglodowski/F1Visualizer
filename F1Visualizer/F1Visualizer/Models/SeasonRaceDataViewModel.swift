@@ -9,7 +9,6 @@ import Foundation
 
 class SeasonRaceDataViewModel: ObservableObject {
     
-    let rdvm = RaceDataViewModel()
     @Published var loading = false;
     @Published var allResults = [RaceTable]()
     @Published var drivers: [Driver] = []
@@ -28,8 +27,7 @@ class SeasonRaceDataViewModel: ObservableObject {
     @Published var gridHeadWins = [Driver: Int]()
     
     
-    func fetchYear(year: String) async -> [RaceTable] {
-        var output = [RaceTable]()
+    func fetchRounds(year: String) async -> Int {
         var rounds: Int = 0
         do { // Fetching Number of rounds
             let s = "https://ergast.com/api/f1/"+year+"/results/1.json"
@@ -40,15 +38,38 @@ class SeasonRaceDataViewModel: ObservableObject {
             guard (response as? HTTPURLResponse)?.statusCode == 200 else { fatalError("Error while fetching data") }
             let decodedResponse = try JSONDecoder().decode(apiResponse.self, from: data)
             rounds = Int(decodedResponse.MRData.total)!
+            return rounds
         } catch {
             print("Failed to reach endpoint: \(error)")
+            return 0
         }
-        
-        for round in (1...rounds) { // Getting all the race tables
-            if (!rdvm.isFetching) {
-                let adding = await rdvm.fetchRace(year: year, round: String(round), current: false)!
-                output.append(adding)
+    }
+    
+    func fetchIndividualRace(year: String, round: String) async -> RaceTable? {
+        do {
+            let url = URL(string: "https://ergast.com/api/f1/"+year+"/"+round+"/results.json")!
+            let urlRequest = URLRequest(url: url)
+            let (data, response) = try await URLSession.shared.data(for: urlRequest)
+            guard (response as? HTTPURLResponse)?.statusCode == 200 else { fatalError("Error while fetching data") }
+            let decodedResponse = try JSONDecoder().decode(apiResponse.self, from: data)
+            let result = decodedResponse.MRData.RaceTable!
+            //print(rawRaceResult)
+            var tempDrivers = [Driver]()
+            for part in (result.Races[0].Results) {
+                tempDrivers.append(part.Driver)
             }
+            return result
+        } catch {
+            print("Failed to reach endpoint: \(error)")
+            return nil
+        }
+    }
+    
+    func fetchRaces(rounds: Int, year: String) async -> [RaceTable] {
+        var output = [RaceTable]()
+        for round in (1...rounds) { // Getting all the race tables
+            let adding = await fetchIndividualRace(year: year, round: String(round))
+            if (adding != nil) { output.append(adding!) }
         }
         return output
     }
@@ -266,7 +287,7 @@ class SeasonRaceDataViewModel: ObservableObject {
     func updateData(current: Bool, year: String?) async -> Bool {
         if (current) {
             self.loading = true
-            self.allResults = await fetchYear(year: "2022")
+            self.allResults = await fetchRaces(rounds: await fetchRounds(year: year!), year: year!)
             self.drivers = getDrivers()
             self.driverTeams = getDriverTeams()
             self.driverPairs = getDriverPairs()
@@ -284,7 +305,7 @@ class SeasonRaceDataViewModel: ObservableObject {
             return true
         } else {
             self.loading = true
-            self.allResults = await fetchYear(year: year!)
+            self.allResults = await fetchRaces(rounds: await fetchRounds(year: year!), year: year!)
             self.drivers = getDrivers()
             self.driverTeams = getDriverTeams()
             self.driverPairs = getDriverPairs()

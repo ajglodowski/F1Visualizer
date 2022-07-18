@@ -43,7 +43,7 @@ func getFlag(nationality: String) -> String {
         return "🇦🇹"
     case "Azerbaijani","Azerbaijan":
         return "🇦🇿"
-    case "American", "United States":
+    case "American", "United States", "US", "USA":
         return "🇺🇸"
     case "Saudi", "Saudi Arabia":
         return "🇸🇦"

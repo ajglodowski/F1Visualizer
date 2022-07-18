@@ -13,6 +13,12 @@ struct CurrentPage: View {
             List {
                 
                 VStack (alignment: .center) {
+                    NavigationLink(destination: RaceResultsTable()) {
+                        Text("Racetable")
+                    }
+                }
+                
+                VStack (alignment: .center) {
                     NavigationLink(destination: RaceDetail(current: true)) {
                         RaceRow(mostRecent: true)
                             .frame(maxHeight: 500)

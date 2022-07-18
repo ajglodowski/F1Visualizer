@@ -219,7 +219,7 @@ struct QualifyingResults: View {
         if (raceResult != nil) {
             HStack(alignment: .center) {
                 //Spacer()
-                var results: [Result]? = raceResult?.Races.first?.Results.filter{ $0.grid == "0"}.sorted(by:{ Int($0.grid)! < Int($1.grid)!}) ?? nil
+                var results: [Result]? = raceResult?.Races.first?.Results.filter{ $0.grid != "0"}.sorted(by:{ Int($0.grid)! < Int($1.grid)!}) ?? nil
                 VStack (alignment: .center) {
                     ForEach(0..<results!.count) { resultInd in
                         if (resultInd % 2 == 0) {

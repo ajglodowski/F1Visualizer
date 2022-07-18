@@ -41,9 +41,9 @@ struct TeammateComparisonHeadToHead: View {
     }
     
     func constAvgResult(constructor: Constructor) -> Float {
-        if (!vm.avgResults.isEmpty && !vm.loading) {
-            let pair = vm.driverPairs[constructor]!.sorted { vm.avgResults[$0]! >  vm.avgResults[$1]!}
-            return vm.avgResults[pair[0]]! - vm.avgResults[pair[1]]!
+        if (!vm.avgPos.isEmpty && !vm.loading) {
+            let pair = vm.driverPairs[constructor]!.sorted { vm.avgPos[$0]! >  vm.avgPos[$1]!}
+            return vm.avgPos[pair[0]]! - vm.avgPos[pair[1]]!
         } else {
             return -1
         }
@@ -115,12 +115,12 @@ struct TeammateComparisonHeadToHead: View {
                                     .bold()
                                 ScrollView(.horizontal) {
                                     HStack {
-                                        if (!vm.avgResults.isEmpty) {
-                                            let pair = vm.driverPairs[constructor]!.sorted { vm.avgResults[$0]! <  vm.avgResults[$1]!}
+                                        if (!vm.avgPos.isEmpty) {
+                                            let pair = vm.driverPairs[constructor]!.sorted { vm.avgPos[$0]! <  vm.avgPos[$1]!}
                                             ForEach(pair) { driver in
                                                 VStack {
                                                     Text("Average Finishing Position")
-                                                    Text("\(vm.avgResults[driver]!)")
+                                                    Text("\(vm.avgPos[driver]!)")
                                                     DriverPhotoTile(driver: driver, color: getConstructorColor(constructor: constructor))
                                                 }
                                             }

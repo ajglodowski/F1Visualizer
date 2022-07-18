@@ -58,7 +58,6 @@ struct CurrentDriverStandings: View {
         VStack {
             if (loaded) {
                 VStack {
-                    Text("Hello")
                     Table(tableObjects, sortOrder: $sortOrder) {
                         TableColumn("Driver Name", value: \.driver.familyName)
                         TableColumn("Constructor", value: \.constructor)
@@ -67,7 +66,7 @@ struct CurrentDriverStandings: View {
                         TableColumn("Avg Pos", value:\.avgPos)
                         TableColumn("Avg Grid", value:\.avgGrid)
                         TableColumn("Race +/-", value:\.raceChange)
-                        TableColumn("Average Points", value:\.avgResult)
+                        TableColumn("Avg Points", value:\.avgResult)
                         TableColumn("DNFs", value:\.dnfs)
                         TableColumn("Races", value:\.races)
                     }

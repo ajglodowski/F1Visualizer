@@ -11,9 +11,11 @@ class RaceDataViewModel: ObservableObject {
     @Published var rawRaceResult: RaceTable? = nil
     @Published var drivers = [Driver]()
     
-    @MainActor
+   
     func fetchRace(year: String, round: String, current: Bool?) async -> RaceTable? {
         do {
+            //let semaphore = DispatchSemaphore(value: 1)
+            //semaphore.wait()
             self.isFetching = true
             let url: URL
             if (!(current ?? false)) {
@@ -33,6 +35,7 @@ class RaceDataViewModel: ObservableObject {
                 tempDrivers.append(part.Driver)
             }
             self.isFetching = false
+            //semaphore.signal()
             return result
         } catch {
             self.isFetching = false
@@ -50,6 +53,7 @@ class RaceDataViewModel: ObservableObject {
         return tempDrivers
     }
     
+    @MainActor
     func fetchAll(year: String, round: String, current: Bool) async {
         self.isFetching = true
         self.rawRaceResult = await fetchRace(year: year, round: round, current: current)
