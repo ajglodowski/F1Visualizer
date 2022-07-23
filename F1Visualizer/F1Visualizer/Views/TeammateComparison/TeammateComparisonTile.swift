@@ -17,7 +17,8 @@ struct TeammateComparisonTile: View {
         NavigationLink(destination: TeammateComparison()) {
             VStack(alignment:.leading) {
                 if (loaded) {
-                    let displayedConstructor = vm.constructors[Int.random(in: 0..<vm.constructors.count)]
+                    //let displayedConstructor = vm.constructors[Int.random(in: 0..<vm.constructors.count)]
+                    let displayedConstructor = vm.constructors[3]
                     Text("Teammate Comparison")
                         .font(.title)
                     Text(displayedConstructor.name)
